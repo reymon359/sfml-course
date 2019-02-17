@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1550430327 source:/home/ramon/Desktop/FV/tutorial/Part_1/main.cpp
+	<SFML/Graphics.hpp>
+	<game.h>
+
+1550429291 /home/ramon/Desktop/FV/tutorial/Part_1/include/game.h
+	<SFML/Graphics.hpp>
+
+1550429333 source:/home/ramon/Desktop/FV/tutorial/Part_1/src/game.cpp
+	<game.h>
+
