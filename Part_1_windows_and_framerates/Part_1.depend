@@ -9,3 +9,9 @@
 1550429333 source:/home/ramon/Desktop/FV/tutorial/Part_1/src/game.cpp
 	<game.h>
 
+1550429333 source:/home/ramon/Desktop/FV/tutorial/Part_1_windows_and_framerates/src/game.cpp
+	<game.h>
+
+1550429291 /home/ramon/Desktop/FV/tutorial/Part_1_windows_and_framerates/include/game.h
+	<SFML/Graphics.hpp>
+

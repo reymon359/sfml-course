@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1550498356 source:/home/ramon/Desktop/FV/tutorial/Part_2_textures_and_sprites/Part_2_textures_and_sprites/main.cpp
+	<SFML/Graphics.hpp>
+	<game.h>
+
+1550498732 /home/ramon/Desktop/FV/tutorial/Part_2_textures_and_sprites/Part_2_textures_and_sprites/include/game.h
+	<SFML/Graphics.hpp>
+
+1550498356 source:/home/ramon/Desktop/FV/tutorial/Part_2_textures_and_sprites/main.cpp
+	<SFML/Graphics.hpp>
+	<game.h>
+
