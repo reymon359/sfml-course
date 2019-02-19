@@ -35,8 +35,7 @@ game::game(Vector2i dimension, std::string title)
 
     spr2->setScale(((float)window1->getSize().x/(float)spr2->getTexture()->getSize().x), ((float)window1->getSize().y/(float)spr2->getTexture()->getSize().y));
 
-
-
+    event1= new Event,
 
     gameLoop();
 }
@@ -47,7 +46,7 @@ void game::gameLoop()
 
     while(window1->isOpen())
     {
-
+        process_events();
         draw();
     }
 }
@@ -65,6 +64,46 @@ void game::draw()
 
 
 }
+
+void game::process_events()
+{
+    while(window1->pollEvent(*event1))
+    {
+        // We are going to listen the different events
+        switch(event1->type)
+        {
+        // window closed
+        case Event::Closed:
+            window1->close();
+            exit(1);
+            break;
+        // Key pressed
+        case Event::KeyPressed:
+            if(Keyboard::isKeyPressed(Keyboard::Up))
+            {
+                spr1->setPosition(spr1->getPosition().x,spr1->getPosition().y - 2);
+            }
+            else if(Keyboard::isKeyPressed(Keyboard::Down))
+            {
+
+                spr1->setPosition(spr1->getPosition().x,spr1->getPosition().y + 2);
+            }
+            else if(Keyboard::isKeyPressed(Keyboard::Left))
+            {
+                spr1->setPosition(spr1->getPosition().x - 2,spr1->getPosition().y);
+            }
+            else if(Keyboard::isKeyPressed(Keyboard::Right))
+            {
+                spr1->setPosition(spr1->getPosition().x + 2,spr1->getPosition().y);
+            }
+
+            break;
+        }
+    }
+
+}
+
+
 //game::~game()
 //{
 //    //dtor

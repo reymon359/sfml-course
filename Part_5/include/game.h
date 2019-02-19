@@ -17,6 +17,7 @@ class game
 
         void draw();
 
+        void process_events();
 
     private:
 
@@ -31,6 +32,8 @@ class game
         Texture * txt2;
 
         Sprite * spr2;
+
+          Event * event1;
 };
 
 #endif // GAME_H
