@@ -31,7 +31,7 @@ private:
     Texture * txt2;
     Sprite * spr2;
     Event * event1;
-    Vector2i * mouse_position;
+    Vector2i  mouse_position;
 
 
 

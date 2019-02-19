@@ -99,12 +99,28 @@ void game::process_events()
             }
 
             break;
-        }
-    }
 
+        case Event::MouseButtonPressed:
+
+
+            if(Mouse::isButtonPressed(Mouse::Left))
+            {
+
+                // To move sprite to mouse position
+                // spr1->setPosition(Vector2f(mouse_position));
+                if(mouse_position==(Vector2i)spr2->getPosition())
+                {
+                    spr2->setColor(Color::Red);
+                }
+                break;
+            }
+        }
+
+    }
 }
 
-void game::process_mouse(){
+void game::process_mouse()
+{
 // We need to create first a position mouse because the mouse in in the
 // full window, the one the game is included into
     mouse_position = Mouse::getPosition(*window1);
