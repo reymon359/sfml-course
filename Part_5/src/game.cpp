@@ -46,6 +46,7 @@ void game::gameLoop()
 
     while(window1->isOpen())
     {
+        process_mouse();
         process_events();
         draw();
     }
@@ -103,7 +104,15 @@ void game::process_events()
 
 }
 
+void game::process_mouse(){
+// We need to create first a position mouse because the mouse in in the
+// full window, the one the game is included into
+    mouse_position = Mouse::getPosition(*window1);
+    mouse_position = (Vector2i)window1->mapPixelToCoords(mouse_position);
 
+
+
+}
 //game::~game()
 //{
 //    //dtor

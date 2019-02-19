@@ -9,31 +9,32 @@ using namespace sf;
 
 class game
 {
-    public:
-        // Constructor
-        game(Vector2i dimension, std::string title);
+public:
+    // Constructor
+    game(Vector2i dimension, std::string title);
 
-        void gameLoop();
+    void gameLoop();
 
-        void draw();
+    void draw();
 
-        void process_events();
+    void process_events();
 
-    private:
+    void process_mouse();
 
-        RenderWindow * window1;
 
-        int fps;
+private:
 
-        Texture * txt1;
+    RenderWindow * window1;
+    int fps;
+    Texture * txt1;
+    Sprite * spr1;
+    Texture * txt2;
+    Sprite * spr2;
+    Event * event1;
+    Vector2i * mouse_position;
 
-        Sprite * spr1;
 
-        Texture * txt2;
 
-        Sprite * spr2;
-
-          Event * event1;
 };
 
 #endif // GAME_H
