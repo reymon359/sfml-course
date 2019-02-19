@@ -12,14 +12,11 @@ class game
 public:
     // Constructor
     game(Vector2i dimension, std::string title);
-
     void gameLoop();
-
     void draw();
-
     void process_events();
-
     void process_mouse();
+    void process_collisions();
 
 
 private:
@@ -30,6 +27,7 @@ private:
     Sprite * spr1;
     Texture * txt2;
     Sprite * spr2;
+    Sprite* spr3;
     Event * event1;
     Vector2i  mouse_position;
 

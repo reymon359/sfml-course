@@ -30,10 +30,14 @@ game::game(Vector2i dimension, std::string title)
     txt2 -> loadFromFile("2.jpg");
 
     spr2 = new Sprite(*txt2);
+    spr3 = new Sprite(*txt2);
+    spr3->setColor(Color::Blue);
+    spr3->setPosition(window1->getSize().x/2.f, window1->getSize().y/2.f);
 
     spr2->setColor(transparent);
-
-    spr2->setScale(((float)window1->getSize().x/(float)spr2->getTexture()->getSize().x), ((float)window1->getSize().y/(float)spr2->getTexture()->getSize().y));
+    // Full window
+    // spr2->setScale(((float)window1->getSize().x/(float)spr2->getTexture()->getSize().x), ((float)window1->getSize().y/(float)spr2->getTexture()->getSize().y));
+    spr2->setScale((50/(float)spr2->getTexture()->getSize().x), (50/(float)spr2->getTexture()->getSize().y));
 
     event1= new Event,
 
@@ -48,6 +52,7 @@ void game::gameLoop()
     {
         process_mouse();
         process_events();
+        process_collisions();
         draw();
     }
 }
@@ -60,7 +65,7 @@ void game::draw()
     // It is important to load first the background
     window1->draw(*spr1);
     window1->draw(*spr2);
-
+    window1->draw(*spr3);
     window1->display();
 
 
@@ -82,20 +87,20 @@ void game::process_events()
         case Event::KeyPressed:
             if(Keyboard::isKeyPressed(Keyboard::Up))
             {
-                spr1->setPosition(spr1->getPosition().x,spr1->getPosition().y - 2);
+                spr2->setPosition(spr2->getPosition().x,spr2->getPosition().y - 5);
             }
             else if(Keyboard::isKeyPressed(Keyboard::Down))
             {
 
-                spr1->setPosition(spr1->getPosition().x,spr1->getPosition().y + 2);
+                spr2->setPosition(spr2->getPosition().x,spr2->getPosition().y + 5);
             }
             else if(Keyboard::isKeyPressed(Keyboard::Left))
             {
-                spr1->setPosition(spr1->getPosition().x - 2,spr1->getPosition().y);
+                spr2->setPosition(spr2->getPosition().x - 5,spr2->getPosition().y);
             }
             else if(Keyboard::isKeyPressed(Keyboard::Right))
             {
-                spr1->setPosition(spr1->getPosition().x + 2,spr1->getPosition().y);
+                spr2->setPosition(spr2->getPosition().x + 5,spr2->getPosition().y);
             }
 
             break;
@@ -126,9 +131,26 @@ void game::process_mouse()
     mouse_position = Mouse::getPosition(*window1);
     mouse_position = (Vector2i)window1->mapPixelToCoords(mouse_position);
 
-
-
 }
+
+void game::process_collisions()
+{
+
+    //  We will create a rectangle in the mouse position
+    FloatRect rectangle_on_mouse(Vector2f(mouse_position), {32,32});
+
+    if(spr2->getGlobalBounds().intersects(rectangle_on_mouse))
+    {
+        spr2->setPosition(Vector2f(mouse_position));
+    }
+    // If spr2 colisions with spr3 it rotates 3 degrees
+    if(spr2->getGlobalBounds().intersects(spr3->getGlobalBounds())){
+        spr3->rotate(3);
+        spr3->setColor(Color::Green);
+    }
+}
+
+
 //game::~game()
 //{
 //    //dtor
