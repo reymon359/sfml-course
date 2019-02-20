@@ -28,9 +28,12 @@ private:
     Texture * txt2;
     Sprite * spr2;
     Sprite* spr3;
+    Texture * txt3;
+
     Event * event1;
     Vector2i  mouse_position;
-
+    RectangleShape* box1;
+    CircleShape * ball1;
 
 
 };

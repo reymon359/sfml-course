@@ -41,6 +41,18 @@ game::game(Vector2i dimension, std::string title)
 
     event1= new Event,
 
+    // FIgures
+    box1 = new RectangleShape({64,64});
+    box1 -> setFillColor(Color::Green);
+    box1-> setPosition(300,300);
+
+    txt3 = new  Texture;
+    txt3->loadFromFile("box.png");
+    box1->setTexture(txt3);
+
+    ball1=new CircleShape(32);
+    ball1->setFillColor(Color::Yellow);
+
     gameLoop();
 }
 
@@ -66,6 +78,8 @@ void game::draw()
     window1->draw(*spr1);
     window1->draw(*spr2);
     window1->draw(*spr3);
+    window1->draw(*box1);
+    window1->draw(*ball1);
     window1->display();
 
 
