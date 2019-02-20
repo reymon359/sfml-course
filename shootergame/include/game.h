@@ -10,12 +10,22 @@ class game
 public:
     // Constructor
     game(Vector2f dimension, String title);
-
+    void gameloop();
+    void load_graphics();
 
 private:
 
+    int fps;
+    RenderWindow * window1;
+
+    Texture txt_monster[3];
+    Sprite spr_monster[3];
+
+    Texture txt_background;
+    Sprite spr_background;
 
 
+    bool game_over;
 
 };
 
