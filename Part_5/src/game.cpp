@@ -1,8 +1,10 @@
 #include <game.h>
 
 #include "SFML/Graphics.hpp"
+#include <iostream>
 
 using namespace sf;
+using namespace std;
 
 // Constructor
 game::game(Vector2i dimension, std::string title)
@@ -12,6 +14,11 @@ game::game(Vector2i dimension, std::string title)
     window1 = new RenderWindow(VideoMode(dimension.x, dimension.y), title);
 
     window1->setFramerateLimit(fps);
+
+    // Time
+    clock1 = new Clock();
+    time1 = new Time();
+    time2 = 0;
 
     txt1 = new Texture;
 
@@ -53,6 +60,8 @@ game::game(Vector2i dimension, std::string title)
     ball1=new CircleShape(32);
     ball1->setFillColor(Color::Yellow);
 
+
+
     gameLoop();
 }
 
@@ -62,10 +71,30 @@ void game::gameLoop()
 
     while(window1->isOpen())
     {
-        process_mouse();
-        process_events();
-        process_collisions();
-        draw();
+        // To control manually the fps
+        *time1 = clock1->getElapsedTime();
+//        cout << time1->asSeconds() << endl;
+        // The number you are dividing is the number of the fps, if you put a 3 the
+        // game will "move" each 3 seconds cause the clock will restart every 3 seconds
+        if(time1->asSeconds()>1/fps)
+        {
+//            time2 += time1->asSeconds();
+time2 += 0.5;
+            if(time2>5){
+                spr2->rotate(10);
+                time2 = 0;
+            }
+            process_mouse();
+            process_events();
+            process_collisions();
+            draw();
+            clock1->restart();
+
+            /* Time constantly increasing
+            *time1 = clock1->getElapsedTime();
+            cout << time1->asSeconds() << endl;*/
+        }
+
     }
 }
 
@@ -158,7 +187,8 @@ void game::process_collisions()
         spr2->setPosition(Vector2f(mouse_position));
     }
     // If spr2 colisions with spr3 it rotates 3 degrees
-    if(spr2->getGlobalBounds().intersects(spr3->getGlobalBounds())){
+    if(spr2->getGlobalBounds().intersects(spr3->getGlobalBounds()))
+    {
         spr3->rotate(3);
         spr3->setColor(Color::Green);
     }

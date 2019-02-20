@@ -30,10 +30,19 @@ private:
     Sprite* spr3;
     Texture * txt3;
 
+    // Events and mouse
     Event * event1;
     Vector2i  mouse_position;
+
+    // FIgures
     RectangleShape* box1;
     CircleShape * ball1;
+
+    // Time
+    Clock * clock1;
+    Time * time1;
+    float time2;
+
 
 
 };
