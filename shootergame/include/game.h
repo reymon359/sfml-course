@@ -12,6 +12,7 @@ public:
     game(Vector2f dimension, String title);
     void gameloop();
     void load_graphics();
+    void process_events();
 
 private:
 
@@ -26,6 +27,8 @@ private:
 
     Texture txt_peephole;
     Sprite spr_peephole;
+
+    Event * event1;
 
     bool game_over;
 

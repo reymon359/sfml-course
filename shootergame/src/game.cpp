@@ -7,12 +7,12 @@
 #include <sstream>
 namespace patch
 {
-    template < typename T > std::string to_string( const T& n )
-    {
-        std::ostringstream stm ;
-        stm << n ;
-        return stm.str() ;
-    }
+template < typename T > std::string to_string( const T& n )
+{
+    std::ostringstream stm ;
+    stm << n ;
+    return stm.str() ;
+}
 }
 #include <iostream>
 
@@ -27,6 +27,9 @@ game::game(Vector2f dimension, String title)
     fps = 60;
     window1 = new RenderWindow(VideoMode(dimension.x,dimension.y), title);
     window1->setFramerateLimit(fps);
+    window1->setMouseCursorVisible(false);
+
+    event1 = new Event;
 
     load_graphics();
     gameloop();
@@ -38,10 +41,11 @@ void game::gameloop()
     while(!game_over)
     {
         window1->clear();
-
+        process_events();
         window1->draw(spr_background);
 
-        for(int i = 0; i<3;i++){
+        for(int i = 0; i<3; i++)
+        {
 
             window1->draw(spr_monster[i]);
         }
@@ -53,10 +57,12 @@ void game::gameloop()
     }
 }
 
-void game::load_graphics(){
+void game::load_graphics()
+{
 
     std::string path;
-    for(int i = 0;i<3; i++){
+    for(int i = 0; i<3; i++)
+    {
 
         path= "monster"+ patch::to_string(i+1)+ ".jpg";
         txt_monster[i].loadFromFile(path);
@@ -72,5 +78,29 @@ void game::load_graphics(){
 
     txt_peephole.loadFromFile("peephole.png");
     spr_peephole.setTexture(txt_peephole);
+
+}
+
+void game::process_events()
+{
+
+    while(window1->pollEvent(*event1))
+    {
+
+        switch(event1->type)
+        {
+
+        case Event::MouseMoved:
+            spr_peephole.setPosition((Vector2f)Mouse::getPosition(*window1));
+        break;
+
+        case Event::Closed:
+        exit(1);
+        break;
+        }
+
+
+    }
+
 
 }
