@@ -24,6 +24,8 @@ private:
     Texture txt_background;
     Sprite spr_background;
 
+    Texture txt_peephole;
+    Sprite spr_peephole;
 
     bool game_over;
 
