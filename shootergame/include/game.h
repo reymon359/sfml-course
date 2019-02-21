@@ -18,9 +18,9 @@ private:
 
     int fps;
     RenderWindow * window1;
-
-    Texture txt_monster[3];
-    Sprite spr_monster[3];
+// Now in enemy class
+//    Texture txt_monster[3];
+//    Sprite spr_monster[3];
 
     Texture txt_background;
     Sprite spr_background;

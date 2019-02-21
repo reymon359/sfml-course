@@ -44,11 +44,11 @@ void game::gameloop()
         process_events();
         window1->draw(spr_background);
 
-        for(int i = 0; i<3; i++)
-        {
-
-            window1->draw(spr_monster[i]);
-        }
+//        Not needed anymore
+//        for(int i = 0; i<3; i++)
+//        {
+//            window1->draw(spr_monster[i]);
+//        }
 
         window1->draw(spr_peephole);
 
@@ -59,16 +59,16 @@ void game::gameloop()
 
 void game::load_graphics()
 {
-
-    std::string path;
-    for(int i = 0; i<3; i++)
-    {
-
-        path= "monster"+ patch::to_string(i+1)+ ".jpg";
-        txt_monster[i].loadFromFile(path);
-        spr_monster[i].setTexture(txt_monster[i]);
-
-    }
+//    Now on enemy.cpp
+//    std::string path;
+//    for(int i = 0; i<3; i++)
+//    {
+//
+//        path= "monster"+ patch::to_string(i+1)+ ".jpg";
+//        txt_monster[i].loadFromFile(path);
+//        spr_monster[i].setTexture(txt_monster[i]);
+//
+//    }
 
     txt_background.loadFromFile("background.jpg");
     spr_background.setTexture(txt_background);
@@ -78,6 +78,7 @@ void game::load_graphics()
 
     txt_peephole.loadFromFile("peephole.png");
     spr_peephole.setTexture(txt_peephole);
+      spr_peephole.setScale((40/(float)txt_peephole.getSize().x), (40/(float)txt_peephole.getSize().y));
 
 }
 

@@ -3,7 +3,7 @@
 	<SFML/Graphics.hpp>
 	<game.h>
 
-1550763740 /home/ramon/Desktop/FV/tutorial/shootergame/include/game.h
+1550765202 /home/ramon/Desktop/FV/tutorial/shootergame/include/game.h
 	<SFML/Graphics.hpp>
 
 1550764184 source:/home/ramon/Desktop/FV/tutorial/shootergame/src/game.cpp
@@ -13,4 +13,14 @@
 	<string>
 	<sstream>
 	<iostream>
+
+1550765631 source:/home/ramon/Desktop/FV/tutorial/shootergame/src/enemy.cpp
+	"enemy.h"
+	<stdlib.h>
+	<string>
+	<sstream>
+	<iostream>
+
+1550765450 /home/ramon/Desktop/FV/tutorial/shootergame/include/enemy.h
+	<SFML/Graphics.hpp>
 
