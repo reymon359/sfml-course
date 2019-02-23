@@ -1,6 +1,8 @@
 #pragma once
 #ifndef GAME_H
+#pragma once
 #define GAME_H
+#include "enemy.h"
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
@@ -30,7 +32,10 @@ private:
 
     Event * event1;
 
+    enemy * monsters[4];
+
     bool game_over;
+    bool slots_monsters[4];
 
 };
 

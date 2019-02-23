@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ENEMY_H
 #define ENEMY_H
 #include <SFML/Graphics.hpp>
@@ -9,7 +10,7 @@ class enemy
 public:
     // cctor
     enemy();
-
+    Sprite get_sprite();
 
 private:
     Texture txt_monster;

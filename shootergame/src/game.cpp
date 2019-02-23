@@ -23,11 +23,19 @@ using namespace std;
 game::game(Vector2f dimension, String title)
 {
     game_over=false;
-
     fps = 60;
     window1 = new RenderWindow(VideoMode(dimension.x,dimension.y), title);
     window1->setFramerateLimit(fps);
     window1->setMouseCursorVisible(false);
+
+
+ for (int i= 0; i<4; i++)
+    {
+    cout << i;
+        slots_monsters[i]=NULL;
+//         cout << line slots_monsters[i];
+    }
+
 
     event1 = new Event;
 
@@ -44,12 +52,14 @@ void game::gameloop()
         process_events();
         window1->draw(spr_background);
 
-//        Not needed anymore
-//        for(int i = 0; i<3; i++)
-//        {
-//            window1->draw(spr_monster[i]);
-//        }
 
+        for (int i= 0; i<4; i++)
+        {
+          if(monsters[i] != NULL){
+
+            window1->draw(monsters[i]->get_sprite());
+          }
+        }
         window1->draw(spr_peephole);
 
         window1->display();
@@ -59,16 +69,6 @@ void game::gameloop()
 
 void game::load_graphics()
 {
-//    Now on enemy.cpp
-//    std::string path;
-//    for(int i = 0; i<3; i++)
-//    {
-//
-//        path= "monster"+ patch::to_string(i+1)+ ".jpg";
-//        txt_monster[i].loadFromFile(path);
-//        spr_monster[i].setTexture(txt_monster[i]);
-//
-//    }
 
     txt_background.loadFromFile("background.jpg");
     spr_background.setTexture(txt_background);
@@ -78,7 +78,7 @@ void game::load_graphics()
 
     txt_peephole.loadFromFile("peephole.png");
     spr_peephole.setTexture(txt_peephole);
-      spr_peephole.setScale((40/(float)txt_peephole.getSize().x), (40/(float)txt_peephole.getSize().y));
+    spr_peephole.setScale((40/(float)txt_peephole.getSize().x), (40/(float)txt_peephole.getSize().y));
 
 }
 
@@ -93,11 +93,11 @@ void game::process_events()
 
         case Event::MouseMoved:
             spr_peephole.setPosition((Vector2f)Mouse::getPosition(*window1));
-        break;
+            break;
 
         case Event::Closed:
-        exit(1);
-        break;
+            exit(1);
+            break;
         }
 
 
