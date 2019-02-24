@@ -18,7 +18,7 @@ public:
 
 private:
 
-    int fps;
+
     RenderWindow * window1;
 // Now in enemy class
 //    Texture txt_monster[3];
@@ -34,9 +34,14 @@ private:
 
     enemy * monsters[4];
 
+    // Time
+    Clock * clock1;
+    Time * time1;
+    float * time2;
+
     bool game_over;
     bool slots_monsters[4];
-
+    int fps;
 };
 
 #endif // GAME_H

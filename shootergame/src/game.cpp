@@ -1,19 +1,9 @@
 #include <game.h>
+#include "enemy.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
-// to_string patch
-#include <string>
-#include <sstream>
-namespace patch
-{
-template < typename T > std::string to_string( const T& n )
-{
-    std::ostringstream stm ;
-    stm << n ;
-    return stm.str() ;
-}
-}
+
 #include <iostream>
 
 
@@ -23,46 +13,87 @@ using namespace std;
 game::game(Vector2f dimension, String title)
 {
     game_over=false;
+
     fps = 60;
+
     window1 = new RenderWindow(VideoMode(dimension.x,dimension.y), title);
     window1->setFramerateLimit(fps);
     window1->setMouseCursorVisible(false);
 
 
- for (int i= 0; i<4; i++)
+    for (int i= 0; i<4; i++)
     {
-    cout << i;
-        slots_monsters[i]=NULL;
-//         cout << line slots_monsters[i];
+        slots_monsters[i]=false;
     }
 
 
     event1 = new Event;
 
     load_graphics();
+
+    clock1 = new Clock;
+    time1 = new Time;
+    time2 = 0;
+
     gameloop();
 }
 
 void game::gameloop()
 {
 
+
     while(!game_over)
+
     {
+
+        *time1 = clock1->getElapsedTime();
+
+        if(time1->asSeconds() > 5 + *time2)
+        {
+            *time2 = time1->asSeconds();
+
+            // To randomly create monsters
+            int result;
+            result = rand()% 100 + 1;
+
+            if(result<30)
+            {
+                // We dont create monster
+
+            }
+            else
+            {
+                // We create monster
+                for (int i= 0; i<4; i++)
+                {
+                    if(!slots_monsters[i])
+                    {
+                        slots_monsters[i]=true;
+                        monsters[i]=new enemy;
+                    }
+
+                }
+            }
+
+
+        }
         window1->clear();
         process_events();
         window1->draw(spr_background);
 
+//        for (int i= 0; i<4; i++)
+//        {
+//            if(monsters[i] != NULL)
+//            {
+//                window1->draw(monsters[i]->get_sprite());
+//            }
+//        }
 
-        for (int i= 0; i<4; i++)
-        {
-          if(monsters[i] != NULL){
 
-            window1->draw(monsters[i]->get_sprite());
-          }
-        }
         window1->draw(spr_peephole);
 
         window1->display();
+
 
     }
 }
