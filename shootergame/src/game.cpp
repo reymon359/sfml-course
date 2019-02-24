@@ -88,7 +88,7 @@ void game::gameloop()
                     while(1)
                     {
                         int result2 = rand() % 3 ;
-                        cout << "random number  "<<result2<< endl;
+                        cout << "random number  "<<result2<< endl; // i dont know why but is giving me the same number all time
 
                         if(!slots_monsters[result2])
                         {
