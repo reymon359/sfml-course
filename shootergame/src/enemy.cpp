@@ -10,7 +10,7 @@ enemy::enemy()
 //        srand(time(NULL)); For random random
     int enemy_number;
 
-    enemy_number = rand() % 3 + 1; // random between 1 and 3
+    enemy_number = rand() % 4 + 0; // random between 1 and 3
 
     std::string path;
 

@@ -10,7 +10,7 @@
 using namespace sf;
 using namespace std;
 
-game::game(Vector2f dimension, String title)
+game::game(Vector2f dimension, std::string title)
 {
     game_over=false;
 
@@ -31,9 +31,9 @@ game::game(Vector2f dimension, String title)
 
     load_graphics();
 
-    clock1 = new Clock;
-    time1 = new Time;
-    time2 = 0;
+    clock1 = new Clock();
+    time1 = new Time();
+    time2 = 5;
 
     gameloop();
 }
@@ -48,10 +48,12 @@ void game::gameloop()
 
         *time1 = clock1->getElapsedTime();
 
-        if(time1->asSeconds() > 5 + *time2)
-        {
-            *time2 = time1->asSeconds();
 
+        if(time1->asSeconds() > time2)
+        {
+            time2 = time1->asSeconds() +5;
+//            time2+=5;
+             cout << time2 << endl;
             // To randomly create monsters
             int result;
             result = rand()% 100 + 1;
@@ -68,8 +70,8 @@ void game::gameloop()
                 {
                     if(!slots_monsters[i])
                     {
-                        slots_monsters[i]=true;
-                        monsters[i]=new enemy;
+                        slots_monsters[i] = true;
+                        monsters[i] = new enemy();
                     }
 
                 }
@@ -81,13 +83,13 @@ void game::gameloop()
         process_events();
         window1->draw(spr_background);
 
-//        for (int i= 0; i<4; i++)
-//        {
-//            if(monsters[i] != NULL)
-//            {
-//                window1->draw(monsters[i]->get_sprite());
-//            }
-//        }
+        for (int i= 0; i<4; i++)
+        {
+            if(slots_monsters[i])
+            {
+            window1->draw(monsters[i]->get_sprite());
+            }
+    }
 
 
         window1->draw(spr_peephole);

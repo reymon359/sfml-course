@@ -11,7 +11,7 @@ class game
 {
 public:
     // Constructor
-    game(Vector2f dimension, String title);
+    game(Vector2f dimension, std::string title);
     void gameloop();
     void load_graphics();
     void process_events();
@@ -20,9 +20,7 @@ private:
 
 
     RenderWindow * window1;
-// Now in enemy class
-//    Texture txt_monster[3];
-//    Sprite spr_monster[3];
+
 
     Texture txt_background;
     Sprite spr_background;
@@ -30,14 +28,17 @@ private:
     Texture txt_peephole;
     Sprite spr_peephole;
 
-    Event * event1;
+
 
     enemy * monsters[4];
 
-    // Time
+
+     // Time
     Clock * clock1;
     Time * time1;
-    float * time2;
+    float  time2;
+
+Event * event1;
 
     bool game_over;
     bool slots_monsters[4];
