@@ -6,7 +6,7 @@ using namespace sf;
 
 int main(int argc, char * args[])
 {
-    game match1({800,600}, "shooter");
+    game match1({1000,800}, "shooter");
 
 
 

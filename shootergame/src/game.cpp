@@ -2,7 +2,7 @@
 #include "enemy.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
-
+#include <stdlib.h>
 
 #include <iostream>
 
@@ -51,9 +51,9 @@ void game::gameloop()
 
         if(time1->asSeconds() > time2)
         {
-            time2 = time1->asSeconds() +5;
+            time2 = time1->asSeconds() +2;
 //            time2+=5;
-             cout << time2 << endl;
+            cout << time2 << endl;
             // To randomly create monsters
             int result;
             result = rand()% 100 + 1;
@@ -61,17 +61,45 @@ void game::gameloop()
             if(result<30)
             {
                 // We dont create monster
+                cout << "we dont create monster" << endl;
 
             }
             else
             {
+                // we create an infinite loop that stops when the monster is created
+
+                bool space_avaliable =false;
                 // We create monster
                 for (int i= 0; i<4; i++)
                 {
+
+                    // we first go through the slots and check if their are avaliable
                     if(!slots_monsters[i])
                     {
-                        slots_monsters[i] = true;
-                        monsters[i] = new enemy();
+                        // if ther is one avaliable we put "space_avaliable" to true
+                        space_avaliable=true;
+                        cout << "there is a space avaliable" << endl;
+                        break;
+                    }
+                }
+                if(space_avaliable)
+                {
+                    // Now we go through the slots randomly checking if it is avaliable
+                    while(1)
+                    {
+                        int result2 = rand() % 3 ;
+                        cout << "random number  "<<result2<< endl;
+
+                        if(!slots_monsters[result2])
+                        {
+                            // if the slot is false means that it is avaliable so we create the monster inside
+                            slots_monsters[result2]=true;
+                            monsters[result2] = new enemy({(float)200*result2,(float)300});
+                            cout << "slot avaliable, creating monster on "<<200*result2<< endl;
+
+                        }
+                        break;
+
                     }
 
                 }
@@ -85,11 +113,13 @@ void game::gameloop()
 
         for (int i= 0; i<4; i++)
         {
+
             if(slots_monsters[i])
             {
-            window1->draw(monsters[i]->get_sprite());
+
+                window1->draw(monsters[i]->get_sprite());
             }
-    }
+        }
 
 
         window1->draw(spr_peephole);

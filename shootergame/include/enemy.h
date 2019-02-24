@@ -9,7 +9,7 @@ class enemy
 {
 public:
     // cctor
-    enemy();
+    enemy(Vector2f position);
     Sprite get_sprite();
 
 private:
