@@ -107,6 +107,7 @@ void game::gameloop()
 
 
         }
+        check_enemies();
         window1->clear();
         process_events();
         window1->draw(spr_background);
@@ -126,7 +127,10 @@ void game::gameloop()
 
         window1->display();
 
-
+        if(lifes<1)
+        {
+           game_over=true;
+        }
     }
 }
 
@@ -161,10 +165,51 @@ void game::process_events()
         case Event::Closed:
             exit(1);
             break;
+
+        case Event::MouseButtonPressed:
+            // We pass the position and the size
+            cout << "mouse pressed "<< endl;
+            FloatRect line(spr_peephole.getPosition(),(Vector2f)(spr_peephole.getTexture()->getSize()));
+            cout << "line "<< endl;
+            // We cheeck if  the Peephole sprite is inside od one of the enemies sprite
+            for (int i= 0; i<4; i++)
+            {
+                cout << "loop "<<i << endl;
+                if(slots_monsters[i])
+                {
+                    cout << "there are monsters inmonsters["<<i<<"] " << endl;
+                    // we get the sprite and check the global bounds to see if there is something
+                    if(monsters[i]->get_sprite().getGlobalBounds().intersects(line))
+                    {
+                        cout << "Sprites interesct" << endl;
+                        monsters[i]=NULL;
+                    }
+
+                }
+            }
+
+            break;
         }
-
-
     }
 
+}
+void game::check_enemies()
+{
+
+    for(int i = 0; i < 4; i++)
+    {
+        if(monsters[i])
+        {
+            // If the monster is alive for 5 seconds it disapears and the player loses 1 life
+            if(monsters[i]->get_seconds()>5)
+            {
+
+                monsters[i]=NULL;
+                lifes--;
+
+            }
+        }
+
+    }
 
 }

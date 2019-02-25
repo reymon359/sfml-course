@@ -15,12 +15,14 @@ public:
     void gameloop();
     void load_graphics();
     void process_events();
+    void check_enemies();
 
 private:
 
 
     RenderWindow * window1;
 
+    int lifes = 3;
 
     Texture txt_background;
     Sprite spr_background;

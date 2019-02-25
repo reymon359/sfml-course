@@ -19,6 +19,10 @@ enemy::enemy(Vector2f position)
     spr_monster.setTexture(txt_monster);
 
     spr_monster.setPosition(position);
+
+    clock1 = new Clock();
+    time1 = new Time();
+    *time1 = clock1 ->getElapsedTime();
 }
 
 Sprite enemy::get_sprite()
@@ -27,3 +31,7 @@ Sprite enemy::get_sprite()
     return spr_monster;
 }
 
+float enemy::get_seconds(){
+   *time1 = clock1->getElapsedTime();
+ return time1->asSeconds();
+}

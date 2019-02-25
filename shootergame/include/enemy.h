@@ -11,10 +11,14 @@ public:
     // cctor
     enemy(Vector2f position);
     Sprite get_sprite();
+    float get_seconds();
 
 private:
     Texture txt_monster;
     Sprite spr_monster;
+
+    Clock * clock1;
+    Time * time1;
 };
 
 #endif // ENEMY_H
