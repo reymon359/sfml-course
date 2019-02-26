@@ -4,9 +4,6 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include <iostream>
-
-
 using namespace sf;
 using namespace std;
 
@@ -40,10 +37,7 @@ game::game(Vector2f dimension, std::string title)
 
 void game::gameloop()
 {
-
-
     while(!game_over)
-
     {
 
         *time1 = clock1->getElapsedTime();

@@ -1,7 +1,8 @@
 #pragma once
+
 #ifndef GAME_H
-#pragma once
 #define GAME_H
+
 #include "enemy.h"
 #include <SFML/Graphics.hpp>
 
@@ -12,13 +13,13 @@ class game
 public:
     // Constructor
     game(Vector2f dimension, std::string title);
+
     void gameloop();
     void load_graphics();
     void process_events();
     void check_enemies();
 
 private:
-
 
     RenderWindow * window1;
 

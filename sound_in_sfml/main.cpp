@@ -17,10 +17,28 @@ int main()
     if(!buffer.loadFromFile("1.wav"))
     {
         cout<<"Could not be loaded"<<endl;
-
     }
     // Now we have the sound and can work with it
     sound.setBuffer(buffer);
+
+    // MUSIC
+    Music Song;
+
+    if(!Song.openFromFile("song.ogg"))
+    {
+        cout<<"Could not be loaded"<<endl;
+    }
+
+    Song.setVolume(20);
+    // To change the speed song
+    Song.setPitch(3);
+    // To repeat the song
+    Song.setLoop(true);
+
+
+
+
+
 
     while(window.isOpen())
     {
@@ -41,9 +59,15 @@ int main()
             {
                 if(event.mouseButton.button == Mouse::Button::Left)
                 {
-                sound.setVolume(65);
+                    sound.setVolume(65);
                     cout<<"sound 1";
                     sound.play();
+                }
+ if(event.mouseButton.button == Mouse::Button::Right)
+                {
+
+                    cout<<"music ";
+                    Song.play();
                 }
 
 
