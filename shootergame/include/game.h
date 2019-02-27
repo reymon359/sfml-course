@@ -46,6 +46,9 @@ Event * event1;
     bool game_over;
     bool slots_monsters[4];
     int fps;
+
+    Font * font1;
+    Text * txt_lifes;
 };
 
 #endif // GAME_H

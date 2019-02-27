@@ -32,6 +32,19 @@ game::game(Vector2f dimension, std::string title)
     time1 = new Time();
     time2 = 5;
 
+    // Text and fonts
+    font1 = new Font();
+    font1->loadFromFile("stella.ttf");
+
+    txt_lifes = new Text();
+    txt_lifes->setFont(*font1);
+
+    txt_lifes->setString("hola");
+    txt_lifes->setPosition(400,300);
+    txt_lifes->setColor(Color::Yellow);
+        txt_lifes->setCharacterSize(50);
+    txt_lifes->setOrigin(txt_lifes->getGlobalBounds().width/2, txt_lifes->getGlobalBounds().height/2)
+
     gameloop();
 }
 
@@ -118,6 +131,9 @@ void game::gameloop()
 
 
         window1->draw(spr_peephole);
+
+        txt_lifes->setString(std::to_string(lifes));
+        window1->draw(*txt_lifes);
 
         window1->display();
 
