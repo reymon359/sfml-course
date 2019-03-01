@@ -1,4 +1,5 @@
-#include <game.h>
+#include "game.h"
+//#include <car.h>
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <stdlib.h>
@@ -20,8 +21,6 @@ game::game(Vector2f dimension, std::string title)
     time1 = new Time();
     time2 = 0.f;
 
-
-
     gameloop();
 }
 
@@ -35,9 +34,11 @@ void game::gameloop()
         {
             time2 = time1->asSeconds();
 
-                    window1->clear();
+            window1->clear();
 
-                     window1->display();
+            window1->draw(player1->get_sprite());
+
+            window1->display();
         }
     }
 

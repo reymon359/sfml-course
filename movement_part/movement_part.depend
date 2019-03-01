@@ -3,6 +3,17 @@
 	<SFML/Graphics.hpp>
 	<game.h>
 
-1551349977 /home/ramon/Desktop/FV/tutorial/movement_part/include/game.h
+1551430175 /home/ramon/Desktop/FV/tutorial/movement_part/include/game.h
+	<game.h>
+	<car.h>
 	<SFML/Graphics.hpp>
+
+1551430190 /home/ramon/Desktop/FV/tutorial/movement_part/include/car.h
+	<SFML/Graphics.hpp>
+
+1551430223 source:/home/ramon/Desktop/FV/tutorial/movement_part/src/car.cpp
+	"car.h"
+	"SFML/Graphics.hpp"
+	<iostream>
+	<stdlib.h>
 

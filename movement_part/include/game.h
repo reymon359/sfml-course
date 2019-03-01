@@ -3,6 +3,9 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <game.h>
+
+#include <car.h>
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
@@ -26,6 +29,9 @@ private:
     Clock * clock1;
     Time * time1;
     float  time2;
-};
+    car * player1;
 
+
+};
 #endif // GAME_H
+
