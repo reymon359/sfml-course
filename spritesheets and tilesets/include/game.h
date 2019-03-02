@@ -17,6 +17,7 @@ public:
     void process_events();
     void load_resources();
     void draw();
+    void set_frame(sprite);
 
     private:
 
@@ -24,6 +25,8 @@ public:
     Event * event;
     Sprite * spr_character1;
     Texture * txt_character1;
+    Sprite * spr_enemy1;
+    Texture * txt_enemy1;
 };
 
 #endif // GAME_H

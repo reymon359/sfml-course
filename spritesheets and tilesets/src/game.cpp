@@ -46,10 +46,18 @@ void game::load_resources()
     txt_character1->loadFromFile("1.png");
     spr_character1 = new Sprite(*txt_character1);
 
+    txt_enemy1 =  new Texture();
+    txt_enemy1->loadFromFile("2.png");
+    spr_enemy1 = new Sprite(*txt_enemy1);
+    spr_enemy1->setPosition(100,100);
+
+    IntRect position(10,140,50,50);
+    spr_character1->setTextureRect(position);
 }
 void game::draw()
 {
     window1->clear();
     window1->draw(*spr_character1);
+    window1->draw(*spr_enemy1);
     window1->display();
 }
