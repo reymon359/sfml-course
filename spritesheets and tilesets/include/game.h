@@ -11,7 +11,7 @@ class game
 {
 public:
     // Constructor
-    game(Vector2f resol, std::string title);
+    game(Vector2i dimension, std::string title);
 
     void gameloop();
     void process_events();

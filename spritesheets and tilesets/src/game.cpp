@@ -6,15 +6,17 @@
 using namespace sf;
 using namespace std;
 
-game::game(Vector2f resol, std::string title)
+game::game(Vector2i dimension, std::string title)
 {
-    window1 = new RenderWindow(VideoMode(resol.x,resol.y), title);
+    window1 = new RenderWindow(VideoMode(dimension.x,dimension.y), title);
+    load_resources();
     event = new Event();
     gameloop();
 }
 
 void game::gameloop()
 {
+
     while(1)
     {
         process_events();
@@ -30,7 +32,8 @@ void game::process_events()
         {
 
         case Event::Closed:
-            exit(1);
+//        Here was the problem
+//            exit(1);
             break;
 
         }
@@ -39,10 +42,10 @@ void game::process_events()
 
 void game::load_resources()
 {
-
     txt_character1 =  new Texture();
     txt_character1->loadFromFile("1.png");
     spr_character1 = new Sprite(*txt_character1);
+
 }
 void game::draw()
 {
