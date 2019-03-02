@@ -43,7 +43,7 @@ game::game(Vector2f dimension, std::string title)
     txt_lifes->setPosition(400,300);
     txt_lifes->setColor(Color::Yellow);
         txt_lifes->setCharacterSize(50);
-    txt_lifes->setOrigin(txt_lifes->getGlobalBounds().width/2, txt_lifes->getGlobalBounds().height/2)
+    txt_lifes->setOrigin(txt_lifes->getGlobalBounds().width/2, txt_lifes->getGlobalBounds().height/2);
 
     gameloop();
 }
