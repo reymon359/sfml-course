@@ -39,7 +39,9 @@ void game::process_events()
 //        Here was the problem
 //            exit(1);
             break;
-
+        case Event::KeyPressed:
+            Keyboard
+            break;
         }
     }
 }
@@ -55,8 +57,8 @@ void game::load_resources()
     spr_enemy1 = new Sprite(*txt_enemy1);
     spr_enemy1->setPosition(100,100);
 
-    set_frame(*spr_character1);
-    set_frame(*spr_enemy1);
+    set_frame(*spr_character1,{0,1});
+    set_frame(*spr_enemy1,{2,2});
 }
 void game::draw()
 {
@@ -69,7 +71,7 @@ void game::set_frame(Sprite &spr_anyone, Vector2i frame_number){
 
     // Now we get the original height and width
     // to get the sprites dinamically from the texture
-//      IntRect position(frame_number.x,frame_number.y, (float)spr_anyone.getTexture()->getSize().x / (float)sprite_division.x, (float)spr_anyone.getTexture()->getSize().y / (float)sprite_division.y);
-         IntRect position(0,0, (float)spr_anyone.getTexture()->getSize().x / 6, (float)spr_anyone.getTexture()->getSize().y / 4);
+      IntRect position((float)frame_number.x * (float)(spr_anyone.getTexture()->getSize().x / (float)sprite_division.x),(float)frame_number.y * (float)(spr_anyone.getTexture()->getSize().y / (float)sprite_division.y),
+       (float)spr_anyone.getTexture()->getSize().x / sprite_division.x, (float)spr_anyone.getTexture()->getSize().y / (float)sprite_division.y);
         spr_anyone.setTextureRect(position);
 }
