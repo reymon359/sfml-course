@@ -17,7 +17,7 @@ public:
     void process_events();
     void load_resources();
     void draw();
-    void set_frame(sprite);
+    void set_frame(Sprite &spr_anyone, Vector2i frame_number);
 
     private:
 
@@ -27,6 +27,7 @@ public:
     Texture * txt_character1;
     Sprite * spr_enemy1;
     Texture * txt_enemy1;
+    Vector2i sprite_division;
 };
 
 #endif // GAME_H
