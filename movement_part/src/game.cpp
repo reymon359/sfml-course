@@ -21,6 +21,8 @@ game::game(Vector2f dimension, std::string title)
     time1 = new Time();
     time2 = 0.f;
 
+
+
     gameloop();
 }
 

@@ -15,6 +15,9 @@ game::game(Vector2i dimension, std::string title)
     sprite_division.x = 6;
     sprite_division.y = 4;
 
+    actual_frame.x = 0;
+    actual_frame.y = 0;
+
     gameloop();
 }
 
@@ -40,7 +43,20 @@ void game::process_events()
 //            exit(1);
             break;
         case Event::KeyPressed:
-            Keyboard
+            if(Keyboard::isKeyPressed(Keyboard::A))
+            {
+
+                if(actual_frame.x < sprite_division.x -1)
+                    actual_frame.x++;
+                set_frame(*spr_character1,actual_frame);
+
+            }
+            else if(Keyboard::isKeyPressed(Keyboard::D))
+            {
+                if(actual_frame.y < sprite_division.y -1)
+                    actual_frame.y++;
+                set_frame(*spr_character1,actual_frame);
+            }
             break;
         }
     }
@@ -57,21 +73,30 @@ void game::load_resources()
     spr_enemy1 = new Sprite(*txt_enemy1);
     spr_enemy1->setPosition(100,100);
 
-    set_frame(*spr_character1,{0,1});
-    set_frame(*spr_enemy1,{2,2});
+    set_frame(*spr_character1, {0,1});
+    set_frame(*spr_enemy1, {2,2});
 }
 void game::draw()
 {
     window1->clear();
+
+    if(actual_frame.x < sprite_division.x -1)
+        actual_frame.x++;
+    else
+        actual_frame.x = 0;
+
+    set_frame(*spr_character1, actual_frame);
+
     window1->draw(*spr_character1);
     window1->draw(*spr_enemy1);
     window1->display();
 }
-void game::set_frame(Sprite &spr_anyone, Vector2i frame_number){
+void game::set_frame(Sprite &spr_anyone, Vector2i frame_number)
+{
 
     // Now we get the original height and width
     // to get the sprites dinamically from the texture
-      IntRect position((float)frame_number.x * (float)(spr_anyone.getTexture()->getSize().x / (float)sprite_division.x),(float)frame_number.y * (float)(spr_anyone.getTexture()->getSize().y / (float)sprite_division.y),
-       (float)spr_anyone.getTexture()->getSize().x / sprite_division.x, (float)spr_anyone.getTexture()->getSize().y / (float)sprite_division.y);
-        spr_anyone.setTextureRect(position);
+    IntRect position((float)frame_number.x * (float)(spr_anyone.getTexture()->getSize().x / (float)sprite_division.x),(float)frame_number.y * (float)(spr_anyone.getTexture()->getSize().y / (float)sprite_division.y),
+                     (float)spr_anyone.getTexture()->getSize().x / sprite_division.x, (float)spr_anyone.getTexture()->getSize().y / (float)sprite_division.y);
+    spr_anyone.setTextureRect(position);
 }

@@ -19,7 +19,7 @@ public:
     void draw();
     void set_frame(Sprite &spr_anyone, Vector2i frame_number);
 
-    private:
+private:
 
     RenderWindow * window1;
     Event * event;
@@ -28,6 +28,6 @@ public:
     Sprite * spr_enemy1;
     Texture * txt_enemy1;
     Vector2i sprite_division;
-};
+    Vector2i actual_frame;
 
 #endif // GAME_H
