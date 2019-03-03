@@ -29,5 +29,6 @@ private:
     Texture * txt_enemy1;
     Vector2i sprite_division;
     Vector2i actual_frame;
-
+    int sprite_flip;
+};
 #endif // GAME_H

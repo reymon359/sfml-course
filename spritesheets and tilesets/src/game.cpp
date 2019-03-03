@@ -9,7 +9,7 @@ using namespace std;
 game::game(Vector2i dimension, std::string title)
 {
     window1 = new RenderWindow(VideoMode(dimension.x,dimension.y), title);
-    load_resources();
+
     event = new Event();
 
     sprite_division.x = 6;
@@ -17,6 +17,12 @@ game::game(Vector2i dimension, std::string title)
 
     actual_frame.x = 0;
     actual_frame.y = 0;
+
+    sprite_flip = 1;
+
+
+    load_resources();
+
 
     gameloop();
 }
@@ -55,7 +61,12 @@ void game::process_events()
             {
                 if(actual_frame.y < sprite_division.y -1)
                     actual_frame.y++;
-                set_frame(*spr_character1,actual_frame);
+                set_frame(*spr_character1, actual_frame);
+            }
+            else if(Keyboard::isKeyPressed(Keyboard::W))
+            {
+                sprite_flip = -1;
+                set_frame(*spr_character1, actual_frame);
             }
             break;
         }
@@ -96,7 +107,7 @@ void game::set_frame(Sprite &spr_anyone, Vector2i frame_number)
 
     // Now we get the original height and width
     // to get the sprites dinamically from the texture
-    IntRect position((float)frame_number.x * (float)(spr_anyone.getTexture()->getSize().x / (float)sprite_division.x),(float)frame_number.y * (float)(spr_anyone.getTexture()->getSize().y / (float)sprite_division.y),
+    IntRect position((float)frame_number.x * (float)(spr_anyone.getTexture()->getSize().x / (float)sprite_division.x) * sprite_flip,(float)frame_number.y * (float)(spr_anyone.getTexture()->getSize().y / (float)sprite_division.y),
                      (float)spr_anyone.getTexture()->getSize().x / sprite_division.x, (float)spr_anyone.getTexture()->getSize().y / (float)sprite_division.y);
     spr_anyone.setTextureRect(position);
 }
